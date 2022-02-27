@@ -8,6 +8,7 @@
     <string name="hintText">Username</string>
     <string name="search">Search</string>
     <string name="notificationsPageLabel">Notifications</string>
+    <string name="user_profile">User Profile</string>
 
 
 </resources>
