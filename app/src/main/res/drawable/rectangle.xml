@@ -11,7 +11,7 @@
         android:type="linear"
         android:startColor="#00FFEB"
         android:endColor="#073ABB"
-        android:angle="0"
+        android:angle="90"
         />
 <!--    <solid android:color="@color/purple_700" />-->
 </shape>
