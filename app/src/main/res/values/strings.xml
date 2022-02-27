@@ -2,5 +2,15 @@
     <string name="app_name">Git Search</string>
     <string name="btn1">Sign in with Google</string>
     <string name="btn2">Sign in with GitHub</string>
+    <string name="repo_label">Repositories</string>
+    <string name="dash_intro">Hello TrekHub</string>
+    <string name="dash_info">Search for Your Favourite Github Users</string>
+    <string name="hintText">Username</string>
+    <string name="search">Search</string>
+
+
+
+
+
 
 </resources>
