@@ -12,7 +12,7 @@
     <string name="followers">Followers</string>
     <string name="followings">Followings</string>
     <string name="gists">Gists</string>
-    <string name="repo">Repo</string>
+    <string name="repo">Repositories</string>
     <string name="repositories">Repositories</string>
     <string name="repo_desc">This is the repo description</string>
 

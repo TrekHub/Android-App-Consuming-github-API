@@ -10,10 +10,12 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.gitsearch.databinding.ActivityDashBoardBinding;
 import com.example.gitsearch.databinding.ActivityMainBinding;
 
 public class DashBoard extends AppCompatActivity {
-    ActivityMainBinding binding;
+
+    ActivityDashBoardBinding binding;
     ListView listView;
     String[] mRepoNames = {"Git Search", "Pizza Palace", "Restfull api", "Java spark website", "Mern stack project"};
 
@@ -22,29 +24,22 @@ public class DashBoard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 //      setContentView(R.layout.activity_dash_board);
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        binding = ActivityDashBoardBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
 
 
-        ImageView mNotification = (ImageView) findViewById(R.id.notification_icon);
-        ImageView mUser = (ImageView) findViewById(R.id.user_icon);
-
-        listView = (ListView) findViewById(R.id.base_ListView);
-        listView.setAdapter(new RepoAdapter(this, mRepoNames));
-
-
-        mNotification.setOnClickListener(new View.OnClickListener() {
+        binding.baseListView.setAdapter(new RepoAdapter(this, mRepoNames));
+        binding.notificationIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(DashBoard.this, NotificationsActivity.class);
                 startActivity(intent);
-
             }
         });
 
 
-        mUser.setOnClickListener(new View.OnClickListener() {
+        binding.userIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(DashBoard.this, ProfileActivity.class);

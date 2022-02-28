@@ -116,118 +116,178 @@
 
         <!--    First circle avatar-->
 
-
-        <TextView
-            android:id="@+id/repos"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_below="@id/user_search"
-            android:layout_marginStart="30dp"
-            android:background="@drawable/circle"
-            android:gravity="center"
-            android:text="32"
-            android:textColor="@color/black"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/repo_label"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/repos"
-            android:layout_marginStart="50dp"
-            android:text="@string/repo"
-            android:textColor="@color/black"
-            android:textStyle="bold" />
+            android:id="@+id/avatars_layout"
+            android:paddingHorizontal="10dp"
+            android:layout_below="@+id/user_search"
+            android:orientation="horizontal">
 
 
-        <!--    Second avatar-->
+            <LinearLayout
 
-        <TextView
-            android:id="@+id/followers"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_below="@id/user_search"
-            android:layout_marginStart="20dp"
-            android:layout_toEndOf="@+id/repos"
-            android:background="@drawable/circle"
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/repos"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_below="@id/user_search"
+                    android:background="@drawable/circle"
+                    android:gravity="center"
+                    android:text="32"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
 
-            android:gravity="center"
-            android:text="32"
-            android:textColor="@color/black"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/followers_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/followers"
-            android:layout_marginStart="40dp"
-            android:layout_toEndOf="@+id/repo_label"
-            android:text="@string/followers"
-
-            android:textColor="@color/black"
-            android:textStyle="bold" />
-
-
-        <!--    Third Avatar-->
-        <TextView
-            android:id="@+id/following"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_below="@id/user_search"
-            android:layout_marginStart="20dp"
-            android:layout_toEndOf="@+id/followers"
-            android:background="@drawable/circle"
-
-            android:gravity="center"
-            android:text="32"
-            android:textColor="@color/black"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/following_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/following"
-            android:layout_marginStart="30dp"
-            android:layout_toEndOf="@+id/followers_label"
-            android:text="@string/followings"
-            android:textColor="@color/black"
-            android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/repo_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/repos"
+                    android:text="@string/repo"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
 
 
-        <!--    Fourth Avatar-->
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/gists"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_below="@id/user_search"
-            android:layout_marginStart="20dp"
-            android:layout_toEndOf="@+id/following"
-            android:background="@drawable/circle"
-            android:gravity="center"
-            android:text="32"
-            android:textColor="@color/black"
-            android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/gists_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/gists"
-            android:layout_marginStart="30dp"
-            android:layout_toEndOf="@+id/following_label"
-            android:text="@string/gists"
-            android:textColor="@color/black"
-            android:textStyle="bold" />
+
+
+
+
+            <!--    Second avatar-->
+
+
+            <LinearLayout
+
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="10dp"
+
+                android:gravity="center"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:id="@+id/followers"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_below="@id/user_search"
+                    android:layout_toEndOf="@+id/repos"
+                    android:background="@drawable/circle"
+                    android:gravity="center"
+                    android:text="32"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/followers_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/followers"
+                    android:layout_toEndOf="@+id/repo_label"
+                    android:text="@string/followers"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+
+
+            <!--    Third Avatar-->
+
+            <LinearLayout
+
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_margin="10dp"
+
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:id="@+id/following"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_below="@id/user_search"
+                    android:layout_toEndOf="@+id/followers"
+                    android:background="@drawable/circle"
+                    android:gravity="center"
+                    android:text="32"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/following_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/following"
+                    android:layout_toEndOf="@+id/followers_label"
+                    android:text="@string/followings"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+
+
+            <!--    Fourth Avatar-->
+
+            <LinearLayout
+
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="10dp"
+
+                android:gravity="center"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/gists"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_below="@id/user_search"
+                    android:layout_toEndOf="@+id/following"
+                    android:background="@drawable/circle"
+                    android:gravity="center"
+                    android:text="32"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/gists_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/gists"
+                    android:layout_toEndOf="@+id/following_label"
+                    android:text="@string/gists"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+
+
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
 
 
         <TextView
             android:id="@+id/label"
             android:layout_width="249dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/followers_label"
+            android:layout_below="@id/avatars_layout"
             android:layout_marginHorizontal="30dp"
             android:layout_marginVertical="15dp"
             android:text="@string/repositories"
@@ -237,7 +297,6 @@
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_below="@id/gists_label"
             android:layout_marginStart="40dp"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="20dp"
@@ -246,6 +305,7 @@
             android:src="@drawable/ic_baseline_filter_list_24" />
 
         <ListView
+
             android:id="@+id/base_ListView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
