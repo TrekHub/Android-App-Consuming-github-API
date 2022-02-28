@@ -15,6 +15,11 @@
     <string name="repo">Repositories</string>
     <string name="repositories">Repositories</string>
     <string name="repo_desc">This is the repo description</string>
+    <string name="image">image</string>
+    <string name="repoValue">32</string>
+    <string name="followersValue">32</string>
+    <string name="followingValue">32</string>
+    <string name="gistValue">32</string>
 
 
 </resources>

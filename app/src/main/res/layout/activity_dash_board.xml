@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="#ebecf0"
     android:fillViewport="true">
 
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="#ebecf0"
         tools:context=".DashBoard">
 
@@ -24,7 +23,8 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="3dp"
-            android:src="@drawable/ic_github" />
+            android:src="@drawable/ic_github"
+            android:contentDescription="@string/image" />
 
 
         <ImageView
@@ -35,7 +35,8 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="10dp"
             android:layout_toStartOf="@id/user_icon"
-            android:src="@drawable/ic_notification" />
+            android:src="@drawable/ic_notification"
+            android:contentDescription="@string/image"/>
 
         <ImageView
             android:id="@+id/user_icon"
@@ -45,7 +46,8 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
-            android:src="@drawable/ic_user" />
+            android:src="@drawable/ic_user"
+            android:contentDescription="@string/image"/>
 
         <RelativeLayout
             android:id="@+id/banner"
@@ -98,7 +100,9 @@
             android:hint="@string/hintText"
             android:padding="8dp"
             android:textColor="#474d57"
-            android:textColorHint="#474d57" />
+            android:textColorHint="#474d57"
+            android:autofillHints=""
+            android:inputType="text" />
 
 
         <Button
@@ -136,10 +140,9 @@
                     android:id="@+id/repos"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:layout_below="@id/user_search"
                     android:background="@drawable/circle"
                     android:gravity="center"
-                    android:text="32"
+                    android:text="@string/repoValue"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
 
@@ -147,16 +150,12 @@
                     android:id="@+id/repo_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/repos"
                     android:text="@string/repo"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
 
 
             </LinearLayout>
-
-
-
 
 
 
@@ -168,7 +167,6 @@
                 android:layout_width="wrap_content"
                 android:orientation="vertical"
                 android:layout_margin="10dp"
-
                 android:gravity="center"
                 android:layout_height="match_parent">
 
@@ -177,11 +175,9 @@
                     android:id="@+id/followers"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:layout_below="@id/user_search"
-                    android:layout_toEndOf="@+id/repos"
                     android:background="@drawable/circle"
                     android:gravity="center"
-                    android:text="32"
+                    android:text="@string/followersValue"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
 
@@ -189,8 +185,6 @@
                     android:id="@+id/followers_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/followers"
-                    android:layout_toEndOf="@+id/repo_label"
                     android:text="@string/followers"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
@@ -216,11 +210,9 @@
                     android:id="@+id/following"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:layout_below="@id/user_search"
-                    android:layout_toEndOf="@+id/followers"
                     android:background="@drawable/circle"
                     android:gravity="center"
-                    android:text="32"
+                    android:text="@string/followingValue"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
 
@@ -228,8 +220,6 @@
                     android:id="@+id/following_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/following"
-                    android:layout_toEndOf="@+id/followers_label"
                     android:text="@string/followings"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
@@ -254,11 +244,9 @@
                     android:id="@+id/gists"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:layout_below="@id/user_search"
-                    android:layout_toEndOf="@+id/following"
                     android:background="@drawable/circle"
                     android:gravity="center"
-                    android:text="32"
+                    android:text="@string/gistValue"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
 
@@ -266,8 +254,6 @@
                     android:id="@+id/gists_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/gists"
-                    android:layout_toEndOf="@+id/following_label"
                     android:text="@string/gists"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
@@ -300,19 +286,18 @@
             android:layout_marginStart="40dp"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="20dp"
+            android:layout_below="@id/avatars_layout"
             android:layout_marginBottom="15dp"
             android:layout_toEndOf="@+id/label"
+            android:contentDescription="@string/image"
             android:src="@drawable/ic_baseline_filter_list_24" />
 
         <ListView
-
             android:id="@+id/base_ListView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/label"
-
-
-            />
+            tools:ignore="NestedScrolling" />
 
 
     </RelativeLayout>
