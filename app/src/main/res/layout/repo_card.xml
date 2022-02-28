@@ -34,6 +34,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:id="@+id/repo_description"
                 android:text="@string/repo_desc"
+                android:textColor="@color/black"
                 android:layout_below="@+id/repo_name"
                 android:textSize="18sp"
                 />

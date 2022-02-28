@@ -4,19 +4,29 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.renderscript.ScriptGroup;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.gitsearch.databinding.ActivityMainBinding;
+
 public class DashBoard extends AppCompatActivity {
+    ActivityMainBinding binding;
     ListView listView;
     String[] mRepoNames = {"Git Search", "Pizza Palace", "Restfull api", "Java spark website", "Mern stack project"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dash_board);
+//      setContentView(R.layout.activity_dash_board);
+
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
+
+
         ImageView mNotification = (ImageView) findViewById(R.id.notification_icon);
         ImageView mUser = (ImageView) findViewById(R.id.user_icon);
 

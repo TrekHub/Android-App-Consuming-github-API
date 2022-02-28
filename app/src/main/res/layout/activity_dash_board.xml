@@ -134,7 +134,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/repos"
-            android:layout_marginStart="30dp"
+            android:layout_marginStart="50dp"
             android:text="@string/repo"
             android:textColor="@color/black"
             android:textStyle="bold" />
@@ -189,7 +189,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/following"
-            android:layout_marginStart="50dp"
+            android:layout_marginStart="30dp"
             android:layout_toEndOf="@+id/followers_label"
             android:text="@string/followings"
             android:textColor="@color/black"
@@ -216,7 +216,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/gists"
-            android:layout_marginStart="50dp"
+            android:layout_marginStart="30dp"
             android:layout_toEndOf="@+id/following_label"
             android:text="@string/gists"
             android:textColor="@color/black"
@@ -228,7 +228,8 @@
             android:layout_width="249dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/followers_label"
-            android:layout_margin="30dp"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginVertical="15dp"
             android:text="@string/repositories"
             android:textColor="@color/black"
             android:textSize="25sp" />
@@ -238,10 +239,9 @@
             android:layout_height="30dp"
             android:layout_below="@id/gists_label"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="30dp"
-
+            android:layout_marginTop="15dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="15dp"
             android:layout_toEndOf="@+id/label"
             android:src="@drawable/ic_baseline_filter_list_24" />
 
