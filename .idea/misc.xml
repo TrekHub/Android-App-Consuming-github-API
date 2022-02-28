@@ -17,7 +17,7 @@
         <entry key="app/src/main/res/drawable/my_button.xml" value="0.15" />
         <entry key="app/src/main/res/drawable/rectangle.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/repo_card.xml" value="0.1775" />
-        <entry key="app/src/main/res/layout/activity_dash_board.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_dash_board.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_notifications.xml" value="0.20416666666666666" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.20416666666666666" />

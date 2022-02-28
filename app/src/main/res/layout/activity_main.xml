@@ -59,19 +59,7 @@
         android:textColor="@color/white"
         android:textStyle="bold" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:id="@+id/googleBtn"
-        android:layout_height="50dp"
-        android:layout_above="@+id/gitBtn"
-        android:background="@drawable/btn"
-        android:layout_marginBottom="10dp"
-        android:layout_marginHorizontal="30dp"
-        android:gravity="center"
-        android:padding="10dp"
-        android:text="@string/btn1"
-        android:textColor="@color/white"
-        android:textStyle="bold"/>
+
 
 
 </RelativeLayout>

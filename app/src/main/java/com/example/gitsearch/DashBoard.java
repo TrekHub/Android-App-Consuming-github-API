@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 public class DashBoard extends AppCompatActivity {
     ListView listView;
-    String[] mRepoNames = {"Teddy", "Martin", "Brian", "George", "Kelvin", "Ibrahim"};
+    String[] mRepoNames = {"Git Search", "Pizza Palace", "Restfull api", "Java spark website", "Mern stack project"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

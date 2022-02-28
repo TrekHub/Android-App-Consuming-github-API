@@ -9,6 +9,12 @@
     <string name="search">Search</string>
     <string name="notificationsPageLabel">Notifications</string>
     <string name="user_profile">User Profile</string>
+    <string name="followers">Followers</string>
+    <string name="followings">Followings</string>
+    <string name="gists">Gists</string>
+    <string name="repo">Repo</string>
+    <string name="repositories">Repositories</string>
+    <string name="repo_desc">This is the repo description</string>
 
 
 </resources>

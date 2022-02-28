@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="#ebecf0"
     android:fillViewport="true">
 
 
@@ -12,7 +12,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="#ebecf0"
         tools:context=".DashBoard">
 
         <ImageView
@@ -20,9 +20,8 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="20dp"
             android:layout_marginVertical="10dp"
-
+            android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="3dp"
             android:src="@drawable/ic_github" />
@@ -48,52 +47,52 @@
             android:layout_marginEnd="20dp"
             android:src="@drawable/ic_user" />
 
-      <RelativeLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:background="@drawable/rectangle"
-          android:padding="10dp"
-          android:id="@+id/banner"
-          android:layout_below="@+id/user_icon"
-          android:layout_marginHorizontal="20dp"
-          android:layout_marginVertical="10dp"
-          >
+        <RelativeLayout
+            android:id="@+id/banner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/user_icon"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="8dp"
+            android:background="@drawable/rectangle"
+            android:padding="10dp">
 
-          <TextView
-              android:id="@+id/dash_intro"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:text="@string/dash_intro"
-              android:textColor="@color/white"
-              android:layout_marginVertical="10dp"
-              android:textSize="20sp" />
+            <TextView
+                android:id="@+id/dash_intro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:text="@string/dash_intro"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-          <TextView
-              android:id="@+id/dash_info"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_below="@id/dash_intro"
-              android:layout_marginTop="5dp"
-              android:text="@string/dash_info"
-              android:textColor="@color/white"
-              android:textSize="30sp" />
+            <TextView
+                android:id="@+id/dash_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/dash_intro"
+                android:layout_marginVertical="10dp"
+                android:text="@string/dash_info"
+                android:textColor="@color/white"
+                android:textSize="26sp"
+                android:textStyle="bold" />
 
 
-
-      </RelativeLayout>
+        </RelativeLayout>
 
 
         <EditText
             android:id="@+id/user_search"
             android:layout_width="228dp"
-            android:layout_height="50dp"
+            android:layout_height="46dp"
             android:layout_below="@id/banner"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="18dp"
             android:layout_marginEnd="19dp"
             android:layout_marginBottom="20dp"
             android:layout_toStartOf="@id/search_btn"
-            android:background="#efefef"
+            android:background="@color/white"
             android:drawableStart="@drawable/ic_baseline_search_24"
             android:drawablePadding="8dp"
             android:hint="@string/hintText"
@@ -102,40 +101,43 @@
             android:textColorHint="#474d57" />
 
 
-        <!--    First circle avatar-->
-
         <Button
             android:id="@+id/search_btn"
             android:layout_width="123dp"
-            android:layout_height="60dp"
+            android:layout_height="54dp"
             android:layout_below="@id/banner"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="13dp"
+            android:layout_marginTop="11dp"
             android:layout_marginEnd="25dp"
             android:layout_marginBottom="10dp"
             android:text="@string/search"
             android:textColor="@color/white" />
+
+        <!--    First circle avatar-->
+
 
         <TextView
             android:id="@+id/repos"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_below="@id/user_search"
-            android:background="@drawable/circle"
             android:layout_marginStart="30dp"
+            android:background="@drawable/circle"
             android:gravity="center"
             android:text="32"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/repo_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/repo_label"
             android:layout_below="@+id/repos"
-            android:text="Repo"
             android:layout_marginStart="30dp"
-            android:textColor="@color/black" />
+            android:text="@string/repo"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
 
 
         <!--    Second avatar-->
@@ -145,23 +147,26 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_below="@id/user_search"
+            android:layout_marginStart="20dp"
             android:layout_toEndOf="@+id/repos"
             android:background="@drawable/circle"
-            android:layout_marginStart="20dp"
+
             android:gravity="center"
             android:text="32"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/followers_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/followers"
-            android:id="@+id/followers_label"
-            android:layout_toEndOf="@+id/repo_label"
-            android:text="Followers"
             android:layout_marginStart="40dp"
-            android:textColor="@color/black" />
+            android:layout_toEndOf="@+id/repo_label"
+            android:text="@string/followers"
 
+            android:textColor="@color/black"
+            android:textStyle="bold" />
 
 
         <!--    Third Avatar-->
@@ -170,22 +175,25 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_below="@id/user_search"
+            android:layout_marginStart="20dp"
             android:layout_toEndOf="@+id/followers"
             android:background="@drawable/circle"
-            android:layout_marginStart="20dp"
+
             android:gravity="center"
             android:text="32"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/following_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/following"
-            android:id="@+id/following_label"
-            android:layout_toEndOf="@+id/followers_label"
-            android:text="Followings"
             android:layout_marginStart="50dp"
-            android:textColor="@color/black" />
+            android:layout_toEndOf="@+id/followers_label"
+            android:text="@string/followings"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
 
 
         <!--    Fourth Avatar-->
@@ -195,22 +203,24 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_below="@id/user_search"
+            android:layout_marginStart="20dp"
             android:layout_toEndOf="@+id/following"
             android:background="@drawable/circle"
-            android:layout_marginStart="20dp"
             android:gravity="center"
             android:text="32"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textStyle="bold" />
 
         <TextView
-            android:layout_width="wrap_content"
             android:id="@+id/gists_label"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/gists"
-            android:layout_toEndOf="@+id/following_label"
-            android:text="Gists"
             android:layout_marginStart="50dp"
-            android:textColor="@color/black" />
+            android:layout_toEndOf="@+id/following_label"
+            android:text="@string/gists"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
 
 
         <TextView
@@ -219,7 +229,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/followers_label"
             android:layout_margin="30dp"
-            android:text="Repositories"
+            android:text="@string/repositories"
             android:textColor="@color/black"
             android:textSize="25sp" />
 
@@ -236,41 +246,16 @@
             android:src="@drawable/ic_baseline_filter_list_24" />
 
         <ListView
+            android:id="@+id/base_ListView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/label"
-            android:id="@+id/base_ListView"
 
 
             />
 
 
-
-
-<!--        <TextView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="200dp"-->
-<!--            android:id="@+id/rect1"-->
-<!--            android:layout_margin="40dp"-->
-<!--            android:background="@drawable/rectangle"-->
-<!--            android:layout_below="@id/label"/>-->
-
-<!--        <TextView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="200dp"-->
-<!--            android:id="@+id/rect2"-->
-<!--            android:layout_margin="40dp"-->
-<!--            android:background="@drawable/rectangle"-->
-<!--            android:layout_below="@id/rect1"/>-->
-
-
-
-
-
-
-
     </RelativeLayout>
-
 
 
 </ScrollView>
