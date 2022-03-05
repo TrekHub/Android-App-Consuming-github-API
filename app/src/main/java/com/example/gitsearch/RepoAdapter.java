@@ -1,25 +1,29 @@
 package com.example.gitsearch;
 
 import android.content.Context;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.example.gitsearch.model.Item;
+
+import java.util.List;
+
 public class RepoAdapter extends BaseAdapter {
     private Context mContext;
-    private String[] mRepoNames;
+    private List<Item> items;
 
-    public RepoAdapter(Context mContext, String[] mRepoNames) {
-        this.mContext = mContext;
-        this.mRepoNames = mRepoNames;
+    public RepoAdapter(Context applicationContext, List<Item> itemArrayList) {
+        this.mContext = applicationContext;
+        this.items = itemArrayList;
+
     }
 
     @Override
     public int getCount() {
-        return mRepoNames.length;
+        return items.size();
     }
 
     @Override
@@ -43,7 +47,7 @@ public class RepoAdapter extends BaseAdapter {
 
             TextView repoName = (TextView) listView
                     .findViewById(R.id.repo_name);
-            repoName.setText(mRepoNames[i]);
+            repoName.setText(items.get(i).getLogin());
         } else {
             listView = (View) view;
         }
