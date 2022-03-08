@@ -14,7 +14,8 @@ import android.widget.Toast;
 
 import com.example.gitsearch.databinding.ActivityDashBoardBinding;
 import com.example.gitsearch.model.Item;
-import com.example.gitsearch.model.Repositories;
+import com.example.gitsearch.model.User;
+
 
 import java.util.List;
 
@@ -24,12 +25,10 @@ import retrofit2.Response;
 
 public class DashBoard extends AppCompatActivity implements View.OnClickListener {
 
-    private RecyclerView recyclerView;
-    TextView Disconnected;
-    ProgressDialog pd;
 
     ActivityDashBoardBinding binding;
-    String[] mRepoNames = {"Git Search", "Pizza Palace", "Restfull api", "Java spark website", "Mern stack project"};
+//    String userName;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +37,10 @@ public class DashBoard extends AppCompatActivity implements View.OnClickListener
         View view = binding.getRoot();
         setContentView(view);
 
-//        binding.baseListView.setAdapter(new RepoAdapter(this, mRepoNames));
         binding.notificationIcon.setOnClickListener(this);
         binding.userIcon.setOnClickListener(this);
-        loadJSON();
-
-
+        binding.searchBtn.setOnClickListener(this);
+//        loadJSON();
     }
 
     //Onclick method
@@ -59,31 +56,43 @@ public class DashBoard extends AppCompatActivity implements View.OnClickListener
             startActivity(intent);
 
         }
+        //getting user input
+        if (view == binding.searchBtn) {
+            String userName = binding.userSearch.getText().toString();
+            loadJSON(userName);
+
+
+        }
 
     }
 
 
-    private void loadJSON() {
+    private void loadJSON(String userName) {
+
         try {
             ApiClient apiClient = new ApiClient();
             Service apiService =
-                    apiClient.getClient().create(Service.class);
-            Call<List<Item>> call = apiService.getItems();
+                    ApiClient.getClient().create(Service.class);
+            Call<List<Item>> call = apiService.getItems(userName);
+            Call<User> userCall = apiService.getUserProfile(userName);
             call.enqueue(new Callback<List<Item>>() {
                 @Override
-                public void onResponse( Call<List<Item>> call, Response<List<Item>> response) {
+                public void onResponse(Call<List<Item>> call, Response<List<Item>> response) {
 
                     assert response.body() != null;
                     List<Item> items = response.body();
-                    System.out.println("hello");
-                    System.out.println(items.toString());
+//                    System.out.println("hello");
+                    for (Item i : items) {
+                        System.out.println(i.getName());
+
+                    }
+
+
                     binding.baseListView.setAdapter(new RepoAdapter(DashBoard.this, items));
                     System.out.println("success");
                     Toast.makeText(DashBoard.this, "Successfully Fetched Data", Toast.LENGTH_SHORT).show();
 
                 }
-
-
 
 
                 @Override
@@ -93,6 +102,30 @@ public class DashBoard extends AppCompatActivity implements View.OnClickListener
 
                 }
             });
+
+
+            //Get USer Profile
+            userCall.enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, @NonNull Response<User> response) {
+                    assert response.body() != null;
+                    User userProfile = response.body();
+                    String dashIntro = "Hello " + userProfile.getLogin();
+                    binding.dashIntro.setText(dashIntro);
+                    binding.repos.setText(String.valueOf(userProfile.getPublic_repos()));
+                    binding.followers.setText(String.valueOf(userProfile.getFollowers()));
+                    binding.following.setText(String.valueOf(userProfile.getFollowing()));
+                    binding.gists.setText(String.valueOf(userProfile.getPublic_gists()));
+
+                }
+
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+
+                }
+            });
+
+
         } catch (Exception e) {
             Log.d("Error", e.getMessage());
             Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();

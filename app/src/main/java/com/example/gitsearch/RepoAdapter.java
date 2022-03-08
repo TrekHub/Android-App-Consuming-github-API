@@ -42,12 +42,15 @@ public class RepoAdapter extends BaseAdapter {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View listView;
 
-        if(view == null){
+        if (view == null) {
             listView = inflater.inflate(R.layout.repo_card, null);
 
             TextView repoName = (TextView) listView
                     .findViewById(R.id.repo_name);
-            repoName.setText(items.get(i).getLogin());
+            repoName.setText(items.get(i).getName());
+
+            TextView repoDescription = (TextView) listView.findViewById(R.id.repo_description);
+            repoDescription.setText(items.get(i).getDescription());
         } else {
             listView = (View) view;
         }

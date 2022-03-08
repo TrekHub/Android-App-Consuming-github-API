@@ -8,13 +8,31 @@ public class User {
     @Expose
     private  String login;
 
-    @SerializedName("html_url")
+    @SerializedName("public_repos")
     @Expose
-    private  String html_url;
+    private int public_repos;
 
-    public User(String login, String html_url) {
+
+    @SerializedName("followers")
+    @Expose
+    private int followers;
+
+
+    @SerializedName("following")
+    @Expose
+    private int following;
+
+
+    @SerializedName("public_gists")
+    @Expose
+    private int public_gists;
+
+    public User(String login, int public_repos, int followers, int following, int public_gists) {
         this.login = login;
-        this.html_url = html_url;
+        this.public_repos = public_repos;
+        this.followers = followers;
+        this.following = following;
+        this.public_gists = public_gists;
     }
 
 
@@ -26,11 +44,35 @@ public class User {
         this.login = login;
     }
 
-    public String getHtml_url() {
-        return html_url;
+    public int getPublic_repos() {
+        return public_repos;
     }
 
-    public void setHtml_url(String html_url) {
-        this.html_url = html_url;
+    public void setPublic_repos(int public_repos) {
+        this.public_repos = public_repos;
+    }
+
+    public int getFollowers() {
+        return followers;
+    }
+
+    public void setFollowers(int followers) {
+        this.followers = followers;
+    }
+
+    public int getFollowing() {
+        return following;
+    }
+
+    public void setFollowing(int following) {
+        this.following = following;
+    }
+
+    public int getPublic_gists() {
+        return public_gists;
+    }
+
+    public void setPublic_gists(int public_gists) {
+        this.public_gists = public_gists;
     }
 }

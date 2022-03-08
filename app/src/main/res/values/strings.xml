@@ -3,7 +3,7 @@
     <string name="btn1">Sign in with Google</string>
     <string name="btn2">Sign in with GitHub</string>
     <string name="repo_label">Repositories</string>
-    <string name="dash_intro">Hello TrekHub</string>
+    <string name="dash_intro"> </string>
     <string name="dash_info">Search for Your Favourite Github Users</string>
     <string name="hintText">Username</string>
     <string name="search">Search</string>
@@ -16,10 +16,10 @@
     <string name="repositories">Repositories</string>
     <string name="repo_desc">This is the repo description</string>
     <string name="image">image</string>
-    <string name="repoValue">32</string>
-    <string name="followersValue">32</string>
-    <string name="followingValue">32</string>
-    <string name="gistValue">32</string>
+    <string name="repoValue">0</string>
+    <string name="followersValue">0</string>
+    <string name="followingValue">0</string>
+    <string name="gistValue">0</string>
 
 
 </resources>
