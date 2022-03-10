@@ -7,23 +7,23 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.example.gitsearch.model.Item;
+import com.example.gitsearch.model.Repo;
 
 import java.util.List;
 
 public class RepoAdapter extends BaseAdapter {
     private Context mContext;
-    private List<Item> items;
+    private List<Repo> repos;
 
-    public RepoAdapter(Context applicationContext, List<Item> itemArrayList) {
+    public RepoAdapter(Context applicationContext, List<Repo> repoArrayList) {
         this.mContext = applicationContext;
-        this.items = itemArrayList;
+        this.repos = repoArrayList;
 
     }
 
     @Override
     public int getCount() {
-        return items.size();
+        return repos.size();
     }
 
     @Override
@@ -47,10 +47,10 @@ public class RepoAdapter extends BaseAdapter {
 
             TextView repoName = (TextView) listView
                     .findViewById(R.id.repo_name);
-            repoName.setText(items.get(i).getName());
+            repoName.setText(repos.get(i).getName());
 
             TextView repoDescription = (TextView) listView.findViewById(R.id.repo_description);
-            repoDescription.setText(items.get(i).getDescription());
+            repoDescription.setText(repos.get(i).getDescription());
         } else {
             listView = (View) view;
         }

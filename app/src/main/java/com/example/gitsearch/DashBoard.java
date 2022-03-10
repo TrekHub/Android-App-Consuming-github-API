@@ -2,18 +2,15 @@ package com.example.gitsearch;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.gitsearch.databinding.ActivityDashBoardBinding;
-import com.example.gitsearch.model.Item;
+import com.example.gitsearch.model.Repo;
 import com.example.gitsearch.model.User;
 
 
@@ -25,9 +22,7 @@ import retrofit2.Response;
 
 public class DashBoard extends AppCompatActivity implements View.OnClickListener {
 
-
     ActivityDashBoardBinding binding;
-//    String userName;
 
 
     @Override
@@ -40,7 +35,6 @@ public class DashBoard extends AppCompatActivity implements View.OnClickListener
         binding.notificationIcon.setOnClickListener(this);
         binding.userIcon.setOnClickListener(this);
         binding.searchBtn.setOnClickListener(this);
-//        loadJSON();
     }
 
     //Onclick method
@@ -66,37 +60,30 @@ public class DashBoard extends AppCompatActivity implements View.OnClickListener
 
     }
 
-
+//Function to fetch response from the api
     private void loadJSON(String userName) {
 
         try {
-            ApiClient apiClient = new ApiClient();
+
             Service apiService =
                     ApiClient.getClient().create(Service.class);
-            Call<List<Item>> call = apiService.getItems(userName);
+            Call<List<Repo>> call = apiService.getItems(userName);
             Call<User> userCall = apiService.getUserProfile(userName);
-            call.enqueue(new Callback<List<Item>>() {
+
+            //Get user repositories
+            call.enqueue(new Callback<List<Repo>>() {
                 @Override
-                public void onResponse(Call<List<Item>> call, Response<List<Item>> response) {
+                public void onResponse(Call<List<Repo>> call, Response<List<Repo>> response) {
 
                     assert response.body() != null;
-                    List<Item> items = response.body();
-//                    System.out.println("hello");
-                    for (Item i : items) {
-                        System.out.println(i.getName());
-
-                    }
-
-
-                    binding.baseListView.setAdapter(new RepoAdapter(DashBoard.this, items));
+                    List<Repo> repos = response.body();
+                    binding.baseListView.setAdapter(new RepoAdapter(DashBoard.this, repos));
                     System.out.println("success");
                     Toast.makeText(DashBoard.this, "Successfully Fetched Data", Toast.LENGTH_SHORT).show();
-
                 }
 
-
                 @Override
-                public void onFailure(Call<List<Item>> call, Throwable t) {
+                public void onFailure(@NonNull Call<List<Repo>> call, Throwable t) {
                     Log.d("Error", t.getMessage());
                     Toast.makeText(DashBoard.this, "Error Fetching Data", Toast.LENGTH_SHORT).show();
 
@@ -107,7 +94,7 @@ public class DashBoard extends AppCompatActivity implements View.OnClickListener
             //Get USer Profile
             userCall.enqueue(new Callback<User>() {
                 @Override
-                public void onResponse(Call<User> call, @NonNull Response<User> response) {
+                public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
                     assert response.body() != null;
                     User userProfile = response.body();
                     String dashIntro = "Hello " + userProfile.getLogin();
@@ -118,13 +105,12 @@ public class DashBoard extends AppCompatActivity implements View.OnClickListener
                     binding.gists.setText(String.valueOf(userProfile.getPublic_gists()));
 
                 }
-
                 @Override
-                public void onFailure(Call<User> call, Throwable t) {
+                public void onFailure(@NonNull Call<User> call, Throwable t) {
+                    Log.d("Error", t.getMessage());
 
                 }
             });
-
 
         } catch (Exception e) {
             Log.d("Error", e.getMessage());
