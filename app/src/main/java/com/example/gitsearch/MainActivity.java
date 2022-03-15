@@ -4,8 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Toast;
 
@@ -30,14 +32,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     String name;
-    Map<String, Object> userInfo;
-
+   private SharedPreferences mSharedPreferences;
+   private SharedPreferences.Editor mEditor;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+   protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mEditor = mSharedPreferences.edit();
         binding.gitBtn.setOnClickListener(this);
     }
 
@@ -48,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (view == binding.gitBtn) {
 
              gitEmail = binding.gitSignForm.getText().toString();
+             addToSharedPreferences(gitEmail);
             if (!gitEmail.matches(emailPattern)) {
                 Toast.makeText(this, "Enter a Valid Email", Toast.LENGTH_SHORT).show();
             } else {
@@ -84,9 +90,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                             if (firebaseUser != null){
                                                  name = firebaseUser.getDisplayName();
                                                  gitEmail = firebaseUser.getEmail();
-
-
-
                                             }
 
                                             openActivity();
@@ -100,14 +103,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                             Toast.makeText(MainActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
                                         }
                                     });
-
-
                 }
 
             }
 
         }
 
+    }
+
+    private void addToSharedPreferences(String gitEmail) {
+        mEditor.putString(Constants.PREFERENCES_EMAIL_KEY, gitEmail).apply();
     }
 
     private void openActivity() {
