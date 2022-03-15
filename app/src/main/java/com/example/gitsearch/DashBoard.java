@@ -72,7 +72,6 @@ public class DashBoard extends AppCompatActivity implements View.OnClickListener
                     ApiClient.getClient().create(Service.class);
             Call<List<Repo>> call = apiService.getItems(userName);
             Call<User> userCall = apiService.getUserProfile(userName);
-            Call<User>   authUser = apiService.getAuthUser();
 
             //Get user repositories
             call.enqueue(new Callback<List<Repo>>() {
@@ -92,22 +91,6 @@ public class DashBoard extends AppCompatActivity implements View.OnClickListener
 
                 }
             });
-
-            //Get Authenticated User
-            authUser.enqueue(new Callback<User>() {
-                @Override
-                public void onResponse(Call<User> call, Response<User> response) {
-//                    assert  response.body() != null;
-                    User user = response.body();
-                    System.out.println(user);
-                }
-
-                @Override
-                public void onFailure(Call<User> call, Throwable t) {
-                    Log.d("Error", t.getMessage());
-                }
-            });
-
 
             //Get USer Profile
             userCall.enqueue(new Callback<User>() {

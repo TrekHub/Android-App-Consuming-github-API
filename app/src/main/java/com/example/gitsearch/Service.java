@@ -13,8 +13,6 @@ public interface Service {
     @GET("/users/{userName}/repos")
     Call<List<Repo>> getItems(@Path("userName") String userName);
 
-    @GET("/user")
-    Call<User> getAuthUser();
 
     @GET("/users/{userName}")
     Call<User> getUserProfile(@Path("userName")String userName);
