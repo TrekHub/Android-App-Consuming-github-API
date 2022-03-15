@@ -14,6 +14,7 @@
         <entry key="app/src/main/res/drawable/ic_menu.xml" value="0.198" />
         <entry key="app/src/main/res/drawable/ic_notification.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_user.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/input_form.xml" value="0.2775" />
         <entry key="app/src/main/res/drawable/my_button.xml" value="0.15" />
         <entry key="app/src/main/res/drawable/rectangle.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/repo_card.xml" value="0.1775" />
@@ -21,6 +22,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_notifications.xml" value="0.20416666666666666" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.20416666666666666" />
+        <entry key="app/src/main/res/layout/input_form.xml" value="0.27291666666666664" />
         <entry key="app/src/main/res/layout/repo_card.xml" value="0.1" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />

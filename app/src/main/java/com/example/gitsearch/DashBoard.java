@@ -23,6 +23,8 @@ import retrofit2.Response;
 public class DashBoard extends AppCompatActivity implements View.OnClickListener {
 
     ActivityDashBoardBinding binding;
+    Bundle bundle;
+    String name;
 
 
     @Override
@@ -35,6 +37,12 @@ public class DashBoard extends AppCompatActivity implements View.OnClickListener
         binding.notificationIcon.setOnClickListener(this);
         binding.userIcon.setOnClickListener(this);
         binding.searchBtn.setOnClickListener(this);
+
+
+        bundle = getIntent().getExtras();
+        name = bundle.getString("name");
+        String dashIntro = "Hello " + name;
+        binding.dashIntro.setText(dashIntro);
     }
 
     //Onclick method
@@ -54,27 +62,22 @@ public class DashBoard extends AppCompatActivity implements View.OnClickListener
         if (view == binding.searchBtn) {
             String userName = binding.userSearch.getText().toString();
             loadJSON(userName);
-
-
         }
-
     }
 
 //Function to fetch response from the api
     private void loadJSON(String userName) {
-
         try {
-
             Service apiService =
                     ApiClient.getClient().create(Service.class);
             Call<List<Repo>> call = apiService.getItems(userName);
             Call<User> userCall = apiService.getUserProfile(userName);
+            Call<User>   authUser = apiService.getAuthUser();
 
             //Get user repositories
             call.enqueue(new Callback<List<Repo>>() {
                 @Override
                 public void onResponse(Call<List<Repo>> call, Response<List<Repo>> response) {
-
                     assert response.body() != null;
                     List<Repo> repos = response.body();
                     binding.baseListView.setAdapter(new RepoAdapter(DashBoard.this, repos));
@@ -90,6 +93,21 @@ public class DashBoard extends AppCompatActivity implements View.OnClickListener
                 }
             });
 
+            //Get Authenticated User
+            authUser.enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+//                    assert  response.body() != null;
+                    User user = response.body();
+                    System.out.println(user);
+                }
+
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+                    Log.d("Error", t.getMessage());
+                }
+            });
+
 
             //Get USer Profile
             userCall.enqueue(new Callback<User>() {
@@ -97,18 +115,14 @@ public class DashBoard extends AppCompatActivity implements View.OnClickListener
                 public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
                     assert response.body() != null;
                     User userProfile = response.body();
-                    String dashIntro = "Hello " + userProfile.getLogin();
-                    binding.dashIntro.setText(dashIntro);
                     binding.repos.setText(String.valueOf(userProfile.getPublic_repos()));
                     binding.followers.setText(String.valueOf(userProfile.getFollowers()));
                     binding.following.setText(String.valueOf(userProfile.getFollowing()));
                     binding.gists.setText(String.valueOf(userProfile.getPublic_gists()));
-
                 }
                 @Override
                 public void onFailure(@NonNull Call<User> call, Throwable t) {
                     Log.d("Error", t.getMessage());
-
                 }
             });
 
