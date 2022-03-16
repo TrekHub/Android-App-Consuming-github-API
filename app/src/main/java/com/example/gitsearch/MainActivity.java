@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -32,8 +33,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     String name;
-   private SharedPreferences mSharedPreferences;
-   private SharedPreferences.Editor mEditor;
+    private SharedPreferences.Editor mEditor;
+
     @Override
    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,8 +42,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         View view = binding.getRoot();
         setContentView(view);
 
-mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         mEditor = mSharedPreferences.edit();
+
+        gitEmail = mSharedPreferences.getString(Constants.PREFERENCES_EMAIL_KEY, null);
+
+
+
         binding.gitBtn.setOnClickListener(this);
     }
 
@@ -53,7 +59,10 @@ mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         if (view == binding.gitBtn) {
 
              gitEmail = binding.gitSignForm.getText().toString();
-             addToSharedPreferences(gitEmail);
+             if(!(gitEmail).equals("")){
+                 addToSharedPreferences(gitEmail);
+
+             }
             if (!gitEmail.matches(emailPattern)) {
                 Toast.makeText(this, "Enter a Valid Email", Toast.LENGTH_SHORT).show();
             } else {
