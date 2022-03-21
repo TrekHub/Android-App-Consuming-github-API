@@ -21,6 +21,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.OAuthProvider;
+import com.google.firebase.auth.UserInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,22 +34,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     String name;
+    String gitId;
     private SharedPreferences.Editor mEditor;
 
     @Override
-   protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-
         SharedPreferences mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         mEditor = mSharedPreferences.edit();
-
         gitEmail = mSharedPreferences.getString(Constants.PREFERENCES_EMAIL_KEY, null);
-
-
-
         binding.gitBtn.setOnClickListener(this);
     }
 
@@ -58,17 +55,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         firebaseAuth = FirebaseAuth.getInstance();
         if (view == binding.gitBtn) {
 
-             gitEmail = binding.gitSignForm.getText().toString();
-             if(!(gitEmail).equals("")){
-                 addToSharedPreferences(gitEmail);
+            gitEmail = binding.gitSignForm.getText().toString();
+            if (!(gitEmail).equals("")) {
+                addToSharedPreferences(gitEmail);
 
-             }
+            }
             if (!gitEmail.matches(emailPattern)) {
                 Toast.makeText(this, "Enter a Valid Email", Toast.LENGTH_SHORT).show();
             } else {
                 OAuthProvider.Builder provider = OAuthProvider.newBuilder("github.com");
                 // Target specific email with login hint.
                 provider.addCustomParameter("login", gitEmail);
+
+                List<String> scopes =
+                        new ArrayList<String>() {
+                            {
+                                add(gitEmail);
+                            }
+                        };
+                provider.setScopes(scopes);
                 Task<AuthResult> pendingResultTask = firebaseAuth.getPendingAuthResult();
                 if (pendingResultTask != null) {
                     // There's something already here! Finish the sign-in for your user.
@@ -90,15 +95,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                     });
                 } else {
                     firebaseAuth
-                            .startActivityForSignInWithProvider(/* activity= */ this, provider.build())
+                            .startActivityForSignInWithProvider(this, provider.build())
                             .addOnSuccessListener(
                                     new OnSuccessListener<AuthResult>() {
                                         @Override
                                         public void onSuccess(AuthResult authResult) {
                                             firebaseUser = firebaseAuth.getCurrentUser();
-                                            if (firebaseUser != null){
-                                                 name = firebaseUser.getDisplayName();
-                                                 gitEmail = firebaseUser.getEmail();
+                                            if (firebaseUser != null) {
+                                                name = firebaseUser.getDisplayName();
+                                                gitEmail = firebaseUser.getEmail();
+                                                gitId = firebaseUser.getProviderData().get(1).getUid();
+
+
                                             }
 
                                             openActivity();
@@ -129,6 +137,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("gitEmail", gitEmail);
         intent.putExtra("name", name);
+        intent.putExtra("gitId", gitId);
         startActivity(intent);
         finish();
 

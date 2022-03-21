@@ -25,6 +25,8 @@ public class DashBoard extends AppCompatActivity implements View.OnClickListener
     ActivityDashBoardBinding binding;
     Bundle bundle;
     String name;
+    String gitId;
+    private String userName;
 
 
     @Override
@@ -41,9 +43,45 @@ public class DashBoard extends AppCompatActivity implements View.OnClickListener
 
         bundle = getIntent().getExtras();
         name = bundle.getString("name");
+        gitId = bundle.getString("gitId");
+        instantiateUser(gitId);
+
         String dashIntro = "Hello " + name;
         binding.dashIntro.setText(dashIntro);
     }
+
+
+
+
+    //function to get additional information of the logged In user
+    private void instantiateUser(String gitId) {
+
+        Service apiService =
+                ApiClient.getClient().create(Service.class);
+
+        Call<User> getUserCall = apiService.getUser(gitId);
+
+
+        getUserCall.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
+                User userInfo = response.body();
+                System.out.println(userInfo != null ? userInfo.getLogin() : null);
+                userName = userInfo.getLogin();
+                loadJSON(userName);
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Log.d("Error2", t.getMessage());
+            }
+        });
+
+
+
+
+    }
+
 
     //Onclick method
     @Override
@@ -60,10 +98,11 @@ public class DashBoard extends AppCompatActivity implements View.OnClickListener
         }
         //getting user input
         if (view == binding.searchBtn) {
-            String userName = binding.userSearch.getText().toString();
+            userName = binding.userSearch.getText().toString();
             loadJSON(userName);
         }
     }
+
 
 //Function to fetch response from the api
     private void loadJSON(String userName) {
@@ -76,12 +115,17 @@ public class DashBoard extends AppCompatActivity implements View.OnClickListener
             //Get user repositories
             call.enqueue(new Callback<List<Repo>>() {
                 @Override
-                public void onResponse(Call<List<Repo>> call, Response<List<Repo>> response) {
-                    assert response.body() != null;
-                    List<Repo> repos = response.body();
-                    binding.baseListView.setAdapter(new RepoAdapter(DashBoard.this, repos));
-                    System.out.println("success");
-                    Toast.makeText(DashBoard.this, "Successfully Fetched Data", Toast.LENGTH_SHORT).show();
+                public void onResponse(@NonNull Call<List<Repo>> call, @NonNull Response<List<Repo>> response) {
+
+                    if(response.body() == null){
+                        Toast.makeText(DashBoard.this,"User Not Found!!", Toast.LENGTH_SHORT).show();
+                    }else {
+                        List<Repo> repos = response.body();
+                        binding.baseListView.setAdapter(new RepoAdapter(DashBoard.this, repos));
+                        System.out.println("success");
+                        Toast.makeText(DashBoard.this, "Successfully Fetched Data", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
 
                 @Override
@@ -96,12 +140,16 @@ public class DashBoard extends AppCompatActivity implements View.OnClickListener
             userCall.enqueue(new Callback<User>() {
                 @Override
                 public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
-                    assert response.body() != null;
-                    User userProfile = response.body();
-                    binding.repos.setText(String.valueOf(userProfile.getPublic_repos()));
-                    binding.followers.setText(String.valueOf(userProfile.getFollowers()));
-                    binding.following.setText(String.valueOf(userProfile.getFollowing()));
-                    binding.gists.setText(String.valueOf(userProfile.getPublic_gists()));
+                    if(response.body() == null){
+                        Toast.makeText(DashBoard.this,"User Not Found!!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        User userProfile = response.body();
+                        binding.repos.setText(String.valueOf(userProfile.getPublic_repos()));
+                        binding.followers.setText(String.valueOf(userProfile.getFollowers()));
+                        binding.following.setText(String.valueOf(userProfile.getFollowing()));
+                        binding.gists.setText(String.valueOf(userProfile.getPublic_gists()));
+                    }
+
                 }
                 @Override
                 public void onFailure(@NonNull Call<User> call, Throwable t) {

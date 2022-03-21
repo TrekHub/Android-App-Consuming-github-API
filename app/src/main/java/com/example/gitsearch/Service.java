@@ -14,6 +14,10 @@ public interface Service {
     Call<List<Repo>> getItems(@Path("userName") String userName);
 
 
+    @GET("/user/{gitId}")
+    Call<User> getUser(@Path("gitId") String gitId);
+
+
     @GET("/users/{userName}")
     Call<User> getUserProfile(@Path("userName")String userName);
 }
